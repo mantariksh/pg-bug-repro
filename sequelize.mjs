@@ -43,6 +43,7 @@ const main = async () => {
     },
   });
 
+  // Observe that the type is string instead of array
   console.log(
     "In the findOrCreate result, typeof roles is",
     typeof findOrCreateUser.roles
@@ -53,6 +54,7 @@ const main = async () => {
     name: "Name 2",
     roles: ["Admin", "View"],
   });
+  // Observe that the type is string, which is correct
   console.log("In the create result, typeof roles is", typeof createUser.roles);
   console.log(createUser.get({ plain: true }));
 };
