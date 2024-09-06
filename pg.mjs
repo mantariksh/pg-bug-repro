@@ -72,7 +72,7 @@ const main = async () => {
   console.log(singleStatementResult.rows);
 
   const multiStatementResult = await client.query(
-    `CREATE OR REPLACE FUNCTION pg_temp.testfunc(OUT response "Users", OUT sequelize_caught_exception text) RETURNS RECORD AS $func_6020ceb2c2d3491c8a77fe107dbabe02$ BEGIN INSERT INTO "Users" ("id","name","roles") VALUES (DEFAULT,'Name',ARRAY['Admin']::"enum_Users_roles"[]) RETURNING * INTO response; EXCEPTION WHEN unique_violation THEN GET STACKED DIAGNOSTICS sequelize_caught_exception = PG_EXCEPTION_DETAIL; END $func_6020ceb2c2d3491c8a77fe107dbabe02$ LANGUAGE plpgsql; SELECT (testfunc.response)."id", (testfunc.response)."name", (testfunc.response)."roles", testfunc.sequelize_caught_exception FROM pg_temp.testfunc(); DROP FUNCTION IF EXISTS pg_temp.testfunc();`
+    `CREATE OR REPLACE FUNCTION pg_temp.testfunc(OUT response "Users", OUT sequelize_caught_exception text) RETURNS RECORD AS $func_6020ceb2c2d3491c8a77fe107dbabe02$ BEGIN INSERT INTO "Users" ("id","name","roles") VALUES (DEFAULT,'Name',ARRAY['Admin','View']::"enum_Users_roles"[]) RETURNING * INTO response; EXCEPTION WHEN unique_violation THEN GET STACKED DIAGNOSTICS sequelize_caught_exception = PG_EXCEPTION_DETAIL; END $func_6020ceb2c2d3491c8a77fe107dbabe02$ LANGUAGE plpgsql; SELECT (testfunc.response)."id", (testfunc.response)."name", (testfunc.response)."roles", testfunc.sequelize_caught_exception FROM pg_temp.testfunc(); DROP FUNCTION IF EXISTS pg_temp.testfunc();`
   );
   console.log("Multi statement insert result is:");
   multiStatementResult.forEach((result) => {

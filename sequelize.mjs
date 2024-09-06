@@ -39,7 +39,7 @@ const main = async () => {
     },
     defaults: {
       name: "Name",
-      roles: ["Admin"],
+      roles: ["Admin", "View"],
     },
   });
 
