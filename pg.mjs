@@ -65,7 +65,7 @@ const main = async () => {
 
   const singleStatementResult = await client.query(
     'INSERT INTO "Users" ("id","name","roles") VALUES (DEFAULT,$1,$2) RETURNING "id","name","roles";',
-    ["Name", "{Admin,View}"]
+    ["Name", ["Admin", "View"]]
   );
   console.log("Single statement insert result is:");
   // Observe that the "roles" column gets correctly parsed into an array as per getTypeParser
