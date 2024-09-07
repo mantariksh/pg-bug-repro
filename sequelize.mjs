@@ -54,7 +54,7 @@ const main = async () => {
     name: "Name 2",
     roles: ["Admin", "View"],
   });
-  // Observe that the type is string, which is correct
+  // Observe that the type is object (an array), which is correct
   console.log("In the create result, typeof roles is", typeof createUser.roles);
   console.log(createUser.get({ plain: true }));
 };
